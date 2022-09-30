@@ -12,4 +12,4 @@ class Solution:
         for i in range(0,n-1):
             minIndex = self.select(arr, i)
             arr[i],arr[minIndex] = arr[minIndex], arr[i]
-        return
+        return arr
