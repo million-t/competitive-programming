@@ -91,7 +91,7 @@ class Solution:
                 
             return []
                     
-        attacking_pieces = [h_forward(king), h_backward(king), v_up(king), v_down(king), d_r_up(king), d_l_up(king), d_r_down(king), d_l_down(king)] #this might contain empty sets        
+        attacking_pieces = [h_forward(king), h_backward(king), v_up(king), v_down(king), d_r_up(king), d_l_up(king), d_r_down(king), d_l_down(king)] #this might contain empty lists       
         
         real_attacking_pieces = []
         for piece in attacking_pieces:
