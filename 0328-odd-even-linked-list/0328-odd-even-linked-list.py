@@ -7,26 +7,21 @@ class Solution:
     def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if not (head and head.next): return head
         
-        odd = head
-        temp = even = head.next
-        cur = even.next
-        i = 3
+        prev = head
+        cur = even = head.next
         
-        while cur:
-            
-            if i%2:
-                odd.next = cur
-                odd = odd.next
-                
-            else:
-                even.next = cur
-                even = even.next
-                
+        i = 2
+        while cur and cur.next:
+            prev.next = cur.next
+            prev = cur
             cur = cur.next
             i += 1
             
-        if even: even.next = None
+        if i%2: 
+            cur.next = even
+            prev.next = None
             
-        odd.next = temp
-
+        else:
+            prev.next = even
+        
         return head
