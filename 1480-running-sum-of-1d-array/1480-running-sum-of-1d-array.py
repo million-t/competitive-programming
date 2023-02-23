@@ -1,6 +1,11 @@
 class Solution:
     def runningSum(self, nums: List[int]) -> List[int]:
-        prefix_sums = [nums[0]]
-        for i in range(1, len(nums)):
-            prefix_sums.append(prefix_sums[-1] + nums[i])            
-        return prefix_sums
+        running_sum = 0
+        
+        ps = []
+        
+        for num in nums:
+            running_sum += num
+            ps.append(running_sum)
+        
+        return ps
