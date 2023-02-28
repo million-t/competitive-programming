@@ -10,6 +10,8 @@ class Solution:
         all_req[0] = [all_req[0], 0]
         for i in range(1, n + 1):
             all_req[i] = [all_req[i] + all_req[i - 1][0], i]
+            
+            
         
         all_req.pop()
         all_req.sort()
@@ -17,11 +19,15 @@ class Solution:
         
         for i in range(n):
             all_req[i][0] = nums[i]
+            
+            
         for i in range(n):
             nums[all_req[i][1]] = all_req[i][0]
+                                             
             
         for i in range(1, n):
             nums[i] += nums[i - 1]
+                                             
         
         max_sum = 0
         for start, end in requests:
