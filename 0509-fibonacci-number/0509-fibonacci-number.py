@@ -9,8 +9,6 @@ class Solution:
         prev1 = self.fib(n-2)
         prev2 = self.fib(n-1)
         
-        self.computed[n-2] = prev1
-        self.computed[n-1] = prev2
         self.computed[n] = prev1 + prev2
         
         return self.computed[n] 
