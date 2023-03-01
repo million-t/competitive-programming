@@ -18,8 +18,8 @@ class Solution:
         left = 0
         right = len(nums) - 1
         
-        player1_score = maximize(left, right)
         total_score = sum(nums)
+        player1_score = maximize(left, right)
         
         return player1_score >= total_score/2
         
