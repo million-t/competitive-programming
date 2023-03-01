@@ -1,5 +1,6 @@
 class Solution:
     def PredictTheWinner(self, nums: List[int]) -> bool:
+        
         @cache
         def maximize(left, right):
             if left > right:
@@ -13,12 +14,12 @@ class Solution:
             
             return max(go_with_left, go_with_right)
         
-        total_score = sum(nums)
         
         left = 0
         right = len(nums) - 1
         
         player1_score = maximize(left, right)
+        total_score = sum(nums)
         
         return player1_score >= total_score/2
         
