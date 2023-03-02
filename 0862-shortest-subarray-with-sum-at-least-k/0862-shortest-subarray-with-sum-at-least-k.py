@@ -1,10 +1,6 @@
 class Solution:
     def shortestSubarray(self, nums: List[int], k: int) -> int:
         
-        prefix_sum = [0]
-        for num in nums:
-            prefix_sum.append(prefix_sum[-1] + num)
-        
         prefix_sum = 0
         queue = deque()
         min_len = float('inf')
