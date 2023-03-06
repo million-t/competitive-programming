@@ -14,6 +14,7 @@ class TopVotedCandidate:
             if self.votes[person] >= leading_vote:
                 self.lead[i] = person
                 leading_vote = self.votes[person]
+                
             else:
                 self.lead[i] = self.lead[i - 1]
                 
@@ -34,7 +35,7 @@ class TopVotedCandidate:
         
         return self.lead[start - 1]
         
-        # return self.persons[bisect_right(self.times, t) - 1]
+        # return self.lead[bisect_right(self.times, t) - 1]
         
 
 
