@@ -22,16 +22,16 @@ class Solution:
         
             new_root = TreeNode(root1.val)
             
-            new_root.left = self.mergeTrees(root1.left, None)
-            new_root.right = self.mergeTrees(root1.right, None)
+            new_root.left = root1.left
+            new_root.right = root1.right
             
                     
         elif root2:
             
             new_root = TreeNode(root2.val)
             
-            new_root.left = self.mergeTrees(None, root2.left)
-            new_root.right = self.mergeTrees(None, root2.right)
+            new_root.left = root2.left
+            new_root.right = root2.right
             
         
         return new_root
