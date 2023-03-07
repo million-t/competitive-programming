@@ -52,6 +52,7 @@ class Solution:
                 
             temp = cur.left
             cur = cur.right
+            
             while cur.left:
                 cur = cur.left
             
