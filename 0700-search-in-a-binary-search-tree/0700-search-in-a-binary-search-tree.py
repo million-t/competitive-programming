@@ -20,15 +20,10 @@ class Solution:
                 cur = cur.right
         
         return None
+            
         
         
-        
-        
-        # if not root: return None    
-        
-        
-        
-#         if root.val == val:
+#         if not root or root.val == val:
 #             return root
         
 #         if root.val > val:
