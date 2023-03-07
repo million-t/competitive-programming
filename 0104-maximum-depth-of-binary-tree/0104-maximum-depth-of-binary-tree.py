@@ -10,10 +10,10 @@ class Solution:
         if not root:
             return 0
         
-        leftDepth = self.maxDepth(root.left) + 1
-        rightDepth = self.maxDepth(root.right) + 1
+        left_depth = self.maxDepth(root.left) + 1
+        right_depth = self.maxDepth(root.right) + 1
         
-        return max(leftDepth, rightDepth)
+        return max(left_depth, right_depth)
         
         
         
