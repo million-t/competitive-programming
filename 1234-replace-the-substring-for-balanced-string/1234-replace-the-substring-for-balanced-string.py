@@ -3,16 +3,14 @@ class Solution:
         length = len(s)
         letter_count = Counter(s)
         
-        to_be_replaced = ''
+        target = Counter()
         
         for let, count in letter_count.items():
             if count > length//4:
-                to_be_replaced += let*(count - length//4 )
-        
-        if not to_be_replaced:
+                target[let] = count - length//4
+                
+        if not target:
             return 0
-        
-        target = Counter(to_be_replaced)
         
         
         window = Counter()
