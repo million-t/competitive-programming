@@ -10,7 +10,7 @@ class Solution:
 
         max_sum = 0
         
-        def traverse(node):
+        def postOrderTraverse(node):
             
             nonlocal max_sum
             
@@ -19,8 +19,8 @@ class Solution:
             
             val = node.val
             
-            left, left_sum, left_min, left_max = traverse(node.left)
-            right, right_sum, right_min, right_max = traverse(node.right)
+            left, left_sum, left_min, left_max = postOrderTraverse(node.left)
+            right, right_sum, right_min, right_max = postOrderTraverse(node.right)
             
             if (left and right) and left_max < val < right_min:
                 new_min = min(left_min, val)
@@ -37,6 +37,6 @@ class Solution:
             
             
             
-        traverse(root)
+        postOrderTraverse(root)
         
         return max_sum
