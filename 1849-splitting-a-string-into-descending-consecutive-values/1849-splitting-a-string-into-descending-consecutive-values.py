@@ -2,46 +2,26 @@ class Solution:
     def splitString(self, s: str) -> bool:
         
         
-        stack = []
-        found = False
-        
-        
-        def is_found():
+        slices = []
+        def backtrack(larger_slice):
             
-            if len(stack) < 2 or int(stack[-2]) - int(stack[-1]) != 1:
-                return False
+            if not larger_slice:
+                
+                return True
             
-            
-            return True
-        
-        
-        
-        
-        def backtrack(number):
-            nonlocal found
-            
-            if found:
-                return 
-            
-            if not number:
-                if is_found():
-                    found = True
+            for index in range(1, len(larger_slice) + 1):
+                
+                new_slice = int(larger_slice[:index])
+                if not slices or slices[-1] == new_slice + 1:
                     
-                return
-            
-            for index in range(1, len(number) + 1):
-                
-                stack.append(number[:index])
-                
-                if len(stack) >= 2 and int(stack[-2]) - int(stack[-1]) != 1:
-                    stack.pop()
-                    continue
+                    slices.append(new_slice)
+                    if backtrack(larger_slice[index:]) and len(slices) > 1:
+                        return True
                     
-                backtrack(number[index:])
-                
-                stack.pop()
+                    slices.pop()
+                    
+            return False
         
-                
-        backtrack(s)
+        return backtrack(s)
+            
         
-        return found
