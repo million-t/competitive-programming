@@ -5,6 +5,7 @@
 #         self.next = next
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        
         def mergeTwo(list1, list2):
             dummy = ListNode(0,None)
             cur =dummy
@@ -35,6 +36,8 @@ class Solution:
                     break
                     
             return dummy.next
+        
+        
         
         merged = None
         for i in range(len(lists)):
