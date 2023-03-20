@@ -3,15 +3,13 @@ class Solution:
         length = len(nums)
         
         sequences = []
+        added = set()
         def backtrack(stack, index):
             nonlocal length
             
-            if len(stack) > 1 and stack not in sequences:
+            if len(stack) > 1 and tuple(stack) not in added:
                 sequences.append(stack[:])
-            
-            if index >= length:
-                return
-            
+                added.add(tuple(stack))
             
             for i in range(index, length):
                 
