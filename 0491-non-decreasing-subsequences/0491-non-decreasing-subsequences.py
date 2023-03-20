@@ -4,6 +4,7 @@ class Solution:
         
         sequences = []
         added = set()
+        
         def backtrack(stack, index):
             nonlocal length
             
@@ -18,8 +19,8 @@ class Solution:
                     backtrack(stack, i + 1)
                     stack.pop()
             
+            
         backtrack([], 0)
-        
         
         return sequences
             
