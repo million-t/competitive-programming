@@ -10,7 +10,7 @@ class Solution:
                 valid_ips.append('.'.join(stack))
                 return
             
-            for ind in range(1, len(substr) + 1):
+            for ind in range(1, len(substr)+1):
                 
                 _slice = substr[:ind]
                 int_slice = int(_slice)
