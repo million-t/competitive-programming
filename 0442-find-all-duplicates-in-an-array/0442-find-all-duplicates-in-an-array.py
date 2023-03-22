@@ -9,15 +9,8 @@ class Solution:
             
             target_ind = nums[index] - 1
             
-            
-            if target_ind != index:
-                
-                if nums[target_ind] == nums[index]:
-                    
-                    index += 1
-                
-                else:
-                    nums[target_ind], nums[index] = nums[index], nums[target_ind]
+            if target_ind != index and nums[target_ind] != nums[index]:
+                nums[target_ind], nums[index] = nums[index], nums[target_ind]
             
             else:
                 index += 1
