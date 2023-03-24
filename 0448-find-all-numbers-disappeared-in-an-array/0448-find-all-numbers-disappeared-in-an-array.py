@@ -1,15 +1,22 @@
 class Solution:
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
-        arr = [1]*len(nums)
         
-        for num in nums:
-            arr[num-1] = 0
+        length = len(nums)
+        index = 0
         
-        left = 0
-        for right in range(len(nums)):
-            if arr[right]:
-                arr[left] = right + 1
-                left += 1
+        while index < length:
+            right_place = nums[index] - 1
+            
+            if right_place != index and nums[right_place] != nums[index]:
+                nums[right_place], nums[index] = nums[index], nums[right_place]
+                
+            else:
+                index += 1
         
-        return arr[:left]
+        disappeared = []
+        for ind, num in enumerate(nums):
+            if num - 1 != ind:
+                disappeared.append(ind + 1)
+        
+        return disappeared
         
