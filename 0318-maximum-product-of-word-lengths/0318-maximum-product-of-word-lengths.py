@@ -1,6 +1,6 @@
 class Solution:
     def maxProduct(self, words: List[str]) -> int:
-        _set = [list(set(word)) for word in words]
+        _set = [set(word) for word in words]
         
         def char_bit(word):
             
