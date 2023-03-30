@@ -15,15 +15,17 @@ class Solution:
             
             for index, val in enumerate(nums):
                 
-                if not considered & 1<<index:
+                shift = 1<<index
+                
+                if not considered & shift:
                     
-                    considered ^= 1<<index
+                    considered ^= shift
                     items.append(val)
                     
                     backtrack(items)
                     
                     items.pop()
-                    considered ^= 1<<index
+                    considered ^= shift
                     
         backtrack([])
         return permutations        
