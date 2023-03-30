@@ -13,9 +13,8 @@ class Solution:
                 permutations.append(items[:])
                 return
             
+            shift = 1
             for index, val in enumerate(nums):
-                
-                shift = 1<<index
                 
                 if not considered & shift:
                     
@@ -26,6 +25,8 @@ class Solution:
                     
                     items.pop()
                     considered ^= shift
+                
+                shift = shift<<1
                     
         backtrack([])
         return permutations        
