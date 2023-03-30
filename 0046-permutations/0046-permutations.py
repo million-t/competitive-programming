@@ -10,7 +10,7 @@ class Solution:
             nonlocal considered
             
             if  len(items) == max_length:
-                permutations.append(items[:])
+                permutations.append(items.copy())
                 return
             
             shift = 1
