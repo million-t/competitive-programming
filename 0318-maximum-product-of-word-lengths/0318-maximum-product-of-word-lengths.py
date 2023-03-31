@@ -18,32 +18,16 @@ class Solution:
         bit_set = [char_bit(word) for word in words]
         
         
-        
-        def is_valid(new_num, num):
-            
-            
-            while new_num:
-                if num&1 and new_num&1:
-                    return False
-                
-                new_num >>= 1
-                num >>= 1
-                
-                            
-            return True
-        
-        
-        
         max_product = 0
         length = len(words)
         
         
-        for first in range(len(words)):
+        for first in range(length):
             
             
-            for second in range(first + 1, len(words)):
+            for second in range(first + 1, length):
                 
-                if is_valid(bit_set[second], bit_set[first]):
+                if not bit_set[first] & bit_set[second]:
                     max_product = max(max_product, len(words[first])*len(words[second]))    
         
         
