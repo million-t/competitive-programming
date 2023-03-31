@@ -22,10 +22,4 @@ class Solution:
             num += 1
         
         
-        
-        primes = 0
-        
-        for val in is_prime:    
-            primes += val
-        
-        return primes
+        return sum(is_prime)
