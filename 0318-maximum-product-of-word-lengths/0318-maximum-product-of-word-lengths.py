@@ -1,7 +1,6 @@
 class Solution:
     def maxProduct(self, words: List[str]) -> int:
         
-        _set = [set(word) for word in words]
         
         def char_bit(word):
             
@@ -16,43 +15,36 @@ class Solution:
             return num
         
         
-        def is_valid(word, num):
+        bit_set = [char_bit(word) for word in words]
+        
+        
+        
+        def is_valid(new_num, num):
             
-            ord_a = ord('a')
             
-            for char in word:
-                ind = ord(char) - ord_a
-                shift = 1<<ind
-                
-                if num&shift:
+            while new_num:
+                if num&1 and new_num&1:
                     return False
-            
+                
+                new_num >>= 1
+                num >>= 1
+                
+                            
             return True
-
+        
         
         
         max_product = 0
         length = len(words)
         
-        def backtrack(index, candidates, seen):
-            nonlocal length, max_product
-            
-            if len(candidates) >= 2:
-                max_product = max(max_product, len(candidates[0])*len(candidates[1]))
-                return
         
+        for first in range(len(words)):
             
-            for next_index in range(index, length):
+            
+            for second in range(first + 1, len(words)):
                 
-                if is_valid(_set[next_index], seen):
-                    
-                    candidates.append(words[next_index])
-                    
-                    backtrack(index + 1, candidates, char_bit(_set[next_index]))
-                    
-                    candidates.pop()
-                
+                if is_valid(bit_set[second], bit_set[first]):
+                    max_product = max(max_product, len(words[first])*len(words[second]))    
         
-        backtrack(0, [], 0)
         
         return max_product
