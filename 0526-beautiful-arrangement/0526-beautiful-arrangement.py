@@ -3,7 +3,7 @@ class Solution:
         
         beautiful_arrangement = 0 
         
-        def backtrack(start, index, visited):
+        def backtrack(index, visited):
             nonlocal beautiful_arrangement
             
             if index > n:
@@ -18,9 +18,9 @@ class Solution:
                     continue
                     
                 visited ^= check_bit
-                backtrack(num + 1, index + 1, visited)
+                backtrack(index + 1, visited)
                 visited ^= check_bit
         
-        backtrack(1, 1, 0)
+        backtrack(1, 0)
         
         return beautiful_arrangement
