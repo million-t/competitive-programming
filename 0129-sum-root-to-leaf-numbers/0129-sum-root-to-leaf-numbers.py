@@ -10,22 +10,25 @@ class Solution:
         
         _sum = 0        
         
-        def traverse(node, path_sum):
+        def dfs(node, path_sum):
             nonlocal _sum
             
-            path_sum += str(node.val)
+            path_sum.append(str(node.val))
 
             if not (node.left or node.right):
-                _sum += int(path_sum)
+                _sum += int(''.join(path_sum))
+                path_sum.pop()
                 return
 
 
             if node.left:
-                traverse(node.left, path_sum)
+                dfs(node.left, path_sum)
 
             if node.right:
-                traverse(node.right, path_sum)
-        
-        traverse(root, '')
+                dfs(node.right, path_sum)
+            
+            path_sum.pop()
+            
+        dfs(root, [])
         
         return _sum
