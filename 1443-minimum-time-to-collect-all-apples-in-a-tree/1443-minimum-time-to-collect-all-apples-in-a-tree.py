@@ -20,7 +20,7 @@ class Solution:
             if not (time or hasApple[node]):
                 return 0
             
-            return max(time + 1, hasApple[node])
+            return time + 1
         
         res = dfs(0)
         
