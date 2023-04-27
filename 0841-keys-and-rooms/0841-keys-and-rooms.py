@@ -1,17 +1,20 @@
 class Solution:
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
         
-        stack = [0]
+        queue = deque([0])
         visited = [0]*len(rooms)
         visited[0] = 1
         
-        while stack:
-            cur_room = stack.pop()
+        
+        while queue:
+            cur = queue.popleft()
             
-            for key in rooms[cur_room]:
-                if not visited[key]:
-                    stack.append(key)
-                    visited[key] = 1
-                    
-        return sum(visited) == len(rooms)
+            for neigh in rooms[cur]:
+                if not visited[neigh]:
+                    visited[neigh] = 1
+                    queue.append(neigh)
+            
+        
+        return all(visited)
+            
         
