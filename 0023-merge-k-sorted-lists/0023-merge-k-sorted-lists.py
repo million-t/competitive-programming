@@ -6,41 +6,24 @@
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         
-        def mergeTwo(list1, list2):
-            dummy = ListNode(0,None)
-            cur =dummy
+        dummy = ListNode()
+        cur = dummy
+        
+        heap = []
+        for ind, node in enumerate(lists):
+            if node:
+                heapq.heappush(heap, (node.val, ind))
+        
+        while heap:
+            least, ind = heapq.heappop(heap)
+            cur.next = lists[ind]
+            cur = cur.next
+            lists[ind] = lists[ind].next
+            if lists[ind]:
+                heapq.heappush(heap, (lists[ind].val, ind))
+        
+        cur.next = None
+        
+        return dummy.next
             
-            while list1 or list2:
-                if list1 and list2:
-                    
-                    if list1.val <= list2.val:
-                        cur.next = list1
-                        temp = list1.next
-                        list1.next = list2
-                        list1 = temp
-                        cur = cur.next
-                        
-                    else:
-                        cur.next = list2
-                        temp = list2.next
-                        list2.next = list1
-                        list2 = temp
-                        cur = cur.next
-                        
-                elif list1:
-                    cur.next = list1
-                    break
-                    
-                elif list2:
-                    cur.next = list2
-                    break
-                    
-            return dummy.next
         
-        
-        
-        merged = None
-        for i in range(len(lists)):
-            merged = mergeTwo(merged, lists[i])
-            
-        return merged
