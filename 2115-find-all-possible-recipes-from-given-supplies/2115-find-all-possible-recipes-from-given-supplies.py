@@ -11,9 +11,11 @@ class Solution:
             
             indegree[recipes[ind]] += len(ingredients[ind])
         
+        
+        
         queue = deque(supplies)
-
         made = []
+        
         while queue:
             cur = queue.popleft()
             
