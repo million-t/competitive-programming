@@ -11,12 +11,8 @@ class Solution:
             
             indegree[recipes[ind]] += len(ingredients[ind])
         
-        queue = deque()
-        
-        for node in graph:
-            if not indegree[node] and node in supplies:
-                queue.append(node)
-                
+        queue = deque(supplies)
+
         made = []
         while queue:
             cur = queue.popleft()
