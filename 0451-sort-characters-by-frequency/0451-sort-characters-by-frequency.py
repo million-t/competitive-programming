@@ -16,4 +16,4 @@ class Solution:
                 res.append(char)
                 freq -= 1
         
-        return res[::-1]
+        return ''.join(res[::-1])
