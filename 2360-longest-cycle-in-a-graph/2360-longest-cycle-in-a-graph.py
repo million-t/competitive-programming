@@ -1,16 +1,12 @@
 class Solution:
     def longestCycle(self, edges: List[int]) -> int:
         
-        graph = [[] for _ in range(len(edges))]
         color = [0]*len(edges)
-        
-        for ind, node in enumerate(edges):
-            if node != -1:
-                graph[ind].append(node)
-            
-        
         index = [0]*len(edges)
+        
         def topoSort(cur, cur_ind):
+            if edges[cur] == -1:
+                return -1
             
             if color[cur] == 1:
                 if index[cur]:
@@ -24,9 +20,7 @@ class Solution:
             color[cur] = 1
             index[cur] = cur_ind
             
-            max_nodes = -1
-            for neigh in graph[cur]:
-                max_nodes = max(topoSort(neigh, cur_ind + 1), max_nodes)
+            max_nodes = topoSort(edges[cur], cur_ind + 1)
             
             index[cur] = 0
             color[cur] == 2
