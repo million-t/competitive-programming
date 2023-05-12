@@ -1,7 +1,6 @@
 class Solution:
     def restoreArray(self, adjacentPairs: List[List[int]]) -> List[int]:
         
-        size = len(adjacentPairs) + 1
         graph = defaultdict(list)
         
         
