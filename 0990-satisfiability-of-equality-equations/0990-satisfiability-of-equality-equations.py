@@ -32,15 +32,13 @@ class DSU:
         
         if self.rank[rep_x] >= self.rank[rep_y]:
             self.rep[rep_y] = rep_x
-            self.rank[rep_x] += self.rank[rep_y]
         
         elif self.rank[rep_x] < self.rank[rep_y]:
             self.rep[rep_x] = rep_y
-            self.rank[rep_y] += self.rank[rep_x]
         
-        # else:
-        #     self.rep[rep_y] = rep_x
-        #     self.rank[rep_x] += 1
+        else:
+            self.rep[rep_y] = rep_x
+            self.rank[rep_x] += 1
         
     def is_connected(self, x, y):
         return self.find(x) == self.find(y)
