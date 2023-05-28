@@ -5,7 +5,7 @@
 #         self.next = next
 class Solution:
     def mergeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = ListNode()
+        dummy = ListNode(0, head)
         cur = dummy
         
         run_sum = 0
@@ -17,7 +17,7 @@ class Solution:
                 run_sum += node.val
                 node = node.next
             
-            cur.next = ListNode(run_sum)
+            cur.next.val = run_sum
             cur = cur.next
             run_sum = 0
             
@@ -25,4 +25,5 @@ class Solution:
                 node = node.next
             
         
+        cur.next = None
         return dummy.next
