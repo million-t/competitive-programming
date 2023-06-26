@@ -3,7 +3,6 @@ class DSU:
         
         self.rep = {comp: comp for comp in comps}
         self.rank = {comp: 1 for comp in comps}
-        self.maxDist = {comp: 0 for comp in comps}
     
     def find(self, x):
         
@@ -18,7 +17,7 @@ class DSU:
         
         return root
     
-    def union(self, x, y, dist):
+    def union(self, x, y):
         rep_x = self.find(x)
         rep_y = self.find(y)
         
@@ -27,22 +26,18 @@ class DSU:
         
         if self.rank[rep_x] > self.rank[rep_y]:
             self.rep[rep_y] = rep_x
-            self.maxDist[rep_x] = max(self.maxDist[rep_x], self.maxDist[rep_y], dist)
-        
+            
         elif self.rank[rep_x] < self.rank[rep_y]:
             self.rep[rep_x] = rep_y
-            self.maxDist[rep_y] = max(self.maxDist[rep_x], self.maxDist[rep_y], dist)
-        
+            
         else:
             self.rep[rep_y] = rep_x
-            self.maxDist[rep_x] = max(self.maxDist[rep_x], self.maxDist[rep_y], dist)
             self.rank[rep_x] += 1
         
     def is_connected(self, x, y):
         return self.find(x) == self.find(y)
     
-    def getMax(self, x):
-        return self.maxDist[self.find(x)]
+    
 
 class Solution:
     def distanceLimitedPathsExist(self, n: int, edgeList: List[List[int]], queries: List[List[int]]) -> List[bool]:
@@ -72,7 +67,7 @@ class Solution:
                 ind += 1
                 
             if not union_find.is_connected(u, v):
-                union_find.union(u, v, dist)
+                union_find.union(u, v)
         
         while ind < length:
             lim, x, y, i = queries[ind]
