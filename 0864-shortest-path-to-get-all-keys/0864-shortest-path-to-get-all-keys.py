@@ -16,7 +16,7 @@ class Solution:
                 if val == '@':
                     source = (row, col)
                 
-                elif val.isalpha() and val.islower():
+                elif val.islower():
                     key_count += 1
         
         
