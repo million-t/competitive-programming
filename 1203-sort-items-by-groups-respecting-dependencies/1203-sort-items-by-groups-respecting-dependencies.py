@@ -38,7 +38,6 @@ class Solution:
             
         
         group_graph = defaultdict(set)
-        # group_incomings = defaultdict(set)
         group_indegree = defaultdict(int)
         graph = defaultdict(lambda: defaultdict(list))
         indegree = defaultdict(int)
@@ -65,18 +64,10 @@ class Solution:
                 else:
                     graph[gn][vertex].append(node)
                     indegree[node] += 1
-                    
             
-        # for node, incoming in group_incomings.items():
-        #     group_indegree[node] = len(incoming)
-            
-        # print(group_graph)
-        # print(group_indegree)
-
         
-        ans = [-1]*n
         group_order = self.topoSort(group_graph, group_indegree)
-        # print(group_order)
+        
         if len(group_order) < len(group_graph):
             return []
         
