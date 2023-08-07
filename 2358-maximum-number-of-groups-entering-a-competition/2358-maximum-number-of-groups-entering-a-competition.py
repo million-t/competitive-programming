@@ -1,7 +1,6 @@
 class Solution:
     def maximumGroups(self, grades: List[int]) -> int:
         
-        grades.sort()
         _set = 0
         cur = 1
         
