@@ -9,14 +9,10 @@ class Solution:
             cur = nums[ind]
             
             if cur > prev:
-                if prev:
-                    inc = ceil(cur/prev)
-                    steps += inc - 1                   
-                    cur = cur//inc
-                    
-                    
-                    
-                    
+                inc = ceil(cur/prev)
+                steps += inc - 1                   
+                cur = cur//inc
+                     
             prev = cur
         
         return steps
