@@ -12,11 +12,11 @@ class Solution:
         both[2] = 2
         
         for num in range(3, n + 1):
-            top[num] += both[num - 2] + bottom[num - 1]
-            bottom[num] += both[num - 2] + top[num - 1]
-            both[num] += top[num - 1] + bottom[num - 1] + both[num - 1] + both[num - 2]
+            top[num] += (both[num - 2] + bottom[num - 1])%MOD
+            bottom[num] += (both[num - 2] + top[num - 1])%MOD
+            both[num] += (top[num - 1] + bottom[num - 1] + both[num - 1] + both[num - 2])%MOD
         
         
         
-        return both[-1]%MOD
+        return both[-1]
         
