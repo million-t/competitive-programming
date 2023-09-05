@@ -15,18 +15,17 @@ class Solution:
         _list = {}
         
         cur = head
-        ind = 0
         while cur:
-            _list[cur] = [ind, Node(cur.val)]
+            _list[cur] = Node(cur.val)
             cur = cur.next
-            ind += 1
         
         
         for node in _list:
-            ind, copy = _list[node]
+            copy = _list[node]
+            
             if node.random:
-                copy.random = _list[node.random][1]
+                copy.random = _list[node.random]
             if node.next:
-                copy.next = _list[node.next][1]
+                copy.next = _list[node.next]
         
-        return _list[head][1]
+        return _list[head]
