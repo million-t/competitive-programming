@@ -7,26 +7,24 @@
 class Solution:
     def longestZigZag(self, root: Optional[TreeNode]) -> int:
         
-        ans = 0 
-        def dfs(node, left, zigzag):
+        ans = 0
+        def dfs(node):
             nonlocal ans
-            ans = max(zigzag, ans)
             
             if not node:
-                return
+                return -1, -1
             
-            if left:
-                dfs(node.left, left, 0)
-                dfs(node.right, not left, zigzag + 1)
-            
-            else:
-                dfs(node.left, not left, zigzag + 1)
-                dfs(node.right, left, 0)
+            left_l, left_r = dfs(node.left)
+            right_l, right_r = dfs(node.right)
+            cur_l = left_r + 1
+            cur_r = right_l + 1
+            ans = max(ans, cur_l, cur_r)
+            return cur_l, cur_r
         
-        dfs(root.left, True, 0)
-        dfs(root.right, False, 0)
+        dfs(root)
         return ans
-                
+            
+            
             
             
         
