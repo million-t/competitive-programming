@@ -22,9 +22,16 @@ class Solution:
             cur.next = prev
             prev = cur
             cur = temp
+            
         temp = cur.next
         cur.next = prev
         seg_1.next = cur
         
         tail.next = temp
         return dummy.next
+        
+            
+            
+            
+            
+            
