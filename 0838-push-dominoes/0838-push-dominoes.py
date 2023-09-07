@@ -3,7 +3,9 @@ class Solution:
         
         length = len(dominoes)
         right_fall = [0]*length
-        left_fall = [(0, '')]*length
+        left_fall = [0]*length
+        
+        
         
         prev_r = float('inf')
         for ind in range(length):
@@ -16,6 +18,8 @@ class Solution:
             right_fall[ind] = prev_r
             prev_r += 1 
         
+        
+        
         prev_l = float('inf')
         for ind in range(length - 1, -1, -1):
             if dominoes[ind] == 'L':
@@ -26,6 +30,8 @@ class Solution:
                 
             left_fall[ind] = prev_l
             prev_l += 1
+        
+        
         
         
         ans = []
