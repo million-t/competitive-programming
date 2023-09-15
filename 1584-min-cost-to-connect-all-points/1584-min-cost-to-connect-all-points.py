@@ -37,32 +37,29 @@ class DSU:
     def is_connected(self, x, y):
         return self.find(x) == self.find(y)
 
+
+
 class Solution:
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
         
-        
         edges = []
-        
-        for ind, point_i in enumerate(points):
-            xi, yi = point_i
-            for j in range(ind + 1, len(points)):
-                xj, yj = points[j]
-                dist = abs(xi - xj) + abs(yi - yj)
-                edges.append((dist, (point_i, points[j])))
-        
-        edges.sort()
-        min_cost = 0
-        union_find = DSU(points)
-        
-        for dist, nodes in edges:
-            u, v = nodes
-            u, v = tuple(u), tuple(v)
-            if union_find.find(u) != union_find.find(v):
-                min_cost += dist
-                union_find.union(u, v)
-        
-        return min_cost
+        for ind, (start_x, start_y) in enumerate(points):
+            for sec_ind in range(ind + 1, len(points)):
+                end_x, end_y = points[sec_ind]
+                dist = abs(start_x - end_x) + abs(start_y - end_y)
+                edges.append((dist, (start_x, start_y), (end_x, end_y)))
             
         
+        union_find = DSU(points)
+        edges.sort()
+        min_cost = 0
         
+        for dist, start, end in edges:
+            if not union_find.is_connected(start, end):
+                union_find.union(start, end)
+                min_cost += dist
+        
+        return min_cost
+                
+            
         
