@@ -1,17 +1,17 @@
 class Solution:
     def minSteps(self, n: int) -> int:
+        if n == 1:
+            return 0
         
-        def factorize(num):
-            
-            factors = []
-            for ind in range(2, num + 1):
-                
-                 while num > 1 and not num%ind:
-                    num //= ind
-                    factors.append(ind)
-                        
-            
-            return factors
+        dp = [num for num in range(n + 1)]
         
-        return sum(factorize(n))
+        
+        for num in range(2, n + 1):
+            
+            dp[num] = num
+            for factor in range(2, int(num**0.5) + 1):
+                if not num%factor:
+                    dp[num] = min(dp[num], dp[factor] + dp[num//factor])
+        
+        return dp[-1]
         
