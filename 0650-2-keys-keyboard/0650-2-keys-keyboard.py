@@ -8,7 +8,6 @@ class Solution:
         
         for num in range(2, n + 1):
             
-            dp[num] = num
             for factor in range(2, int(num**0.5) + 1):
                 if not num%factor:
                     dp[num] = min(dp[num], dp[factor] + dp[num//factor])
