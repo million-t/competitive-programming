@@ -1,7 +1,8 @@
 class Solution:
     def stoneGameIII(self, stoneValue: List[int]) -> str:
 
-
+        
+        
         memo = {}
 
         def dp(ind):
@@ -33,12 +34,5 @@ class Solution:
         
         return 'Tie'
 
-
-
-
-
-        
-        print(score)
-        return "Alice"
 
         
