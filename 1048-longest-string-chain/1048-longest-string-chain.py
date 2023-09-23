@@ -6,7 +6,6 @@ class Solution:
         words.sort(key = lambda x: len(x))
         visited = defaultdict(int)
         ans = 0
-        print(words)
         
         for word in words:
             
