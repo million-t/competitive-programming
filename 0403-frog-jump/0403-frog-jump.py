@@ -9,6 +9,7 @@ class Solution:
         for indx in range(length - 2, -1, -1):
             num = stones[indx]
             dp[indx].add(stones[-1] - stones[indx])
+            
             for sec_indx in range(indx + 1, length - 1):
                 sec_num = stones[sec_indx]
                 k = sec_num - num
