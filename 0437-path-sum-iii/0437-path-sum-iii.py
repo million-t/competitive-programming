@@ -7,29 +7,25 @@
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
         
+        
         seen = defaultdict(int)
-        valid_paths = 0
         seen[0] += 1
+        self.ans = 0
         
-        def findPathSumEqualsK(cur_path_sum, node):
-            nonlocal targetSum, valid_paths
+        def dfs(node, path_sum):
+            if not node: 
+                return
             
-            if node:
-                
-                cur_path_sum += node.val
-                dif = cur_path_sum - targetSum
-                valid_paths += seen[dif]
-                
-                
-                seen[cur_path_sum] += 1
-                
-                findPathSumEqualsK(cur_path_sum, node.left)
-                findPathSumEqualsK(cur_path_sum, node.right)
-                
-                seen[cur_path_sum] -= 1
-                
+            path_sum += node.val
+            self.ans += seen[path_sum - targetSum]
+            
+            seen[path_sum] += 1
+            
+            dfs(node.left, path_sum)
+            dfs(node.right, path_sum)
+            
+            seen[path_sum] -= 1
         
-        findPathSumEqualsK(0, root)
-        
-        return valid_paths
+        dfs(root, 0)
+        return self.ans
         
