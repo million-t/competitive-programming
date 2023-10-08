@@ -7,29 +7,24 @@
 class Solution:
     def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         
-        levels = {}
-        max_dif = 0
         
-        def findWidth(node, level, x):
-            nonlocal max_dif
-            
-            if node:
-                if level not in levels:
-                    levels[level] = [x, x]
-                
-                else:
-                    
-                    
-                    levels[level][0] = min(levels[level][0], x)
-                    levels[level][1] = max(levels[level][1], x)
-                    
-                max_dif = max(max_dif, levels[level][1] - levels[level][0] + 1)
-                
-                new_index = 2*x
-                
-                findWidth(node.left, level + 1, new_index)
-                findWidth(node.right, level + 1, new_index + 1)
+        queue = deque([(root, 0)])
+        ans = 0
         
-        findWidth(root, 0, 0)
+        while queue:
+            _min = float('inf')
+            _max = 0
+            for _ in range(len(queue)):
+                node, indx = queue.popleft()
+                _min = min(_min, indx)
+                _max = max(_max, indx)
+                
+                if node.left:
+                    queue.append((node.left, 2*indx))
+                
+                if node.right:
+                    queue.append((node.right, 2*indx + 1))
+                                
+            ans = max(ans, _max - _min + 1)
         
-        return max_dif
+        return ans
