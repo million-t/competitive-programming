@@ -9,7 +9,7 @@ class Solution:
         
 #         pref = [0]*len(gas)
 #         for indx in range(len(gas)):
-#             pref[indx] = max(pref[indx - 1] + gas[indx] - cost[indx], 0)
+#             pref[indx] = min(pref[indx - 1] + gas[indx] - cost[indx], 0)
         
         ans = -1
         run_sum = 0
