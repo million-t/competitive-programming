@@ -1,33 +1,49 @@
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
-        power = [1]
-        
-        for num in range(1, max(len(haystack), len(needle))):
-            power.append(power[-1]*27)
-        
-        target = 0
-        ord_a = ord('a')
-        for indx, char in enumerate(needle[::-1]):
-            target += (ord(char) - ord_a + 1)*power[indx]
+        if len(needle) > len(haystack):
+            return -1
         
         
-        win_size = len(needle)
-        left = 0
-        cur_val = 0
-
-        for right in range(len(haystack)):
-            cur_val = cur_val*27 + (ord(haystack[right]) - ord_a + 1)
+        needle_length = len(needle)
+        lps = [0]*needle_length
+        
+        left, right = 0, 1
+        
+        while right < needle_length:
             
-            
-            if right - left + 1 == win_size:
-                if cur_val == target:
-                    return left
-                
-                cur_val -=  (ord(haystack[left]) - ord_a + 1)*power[win_size - 1]
+            if needle[left] == needle[right]:
+                lps[right] = left + 1
                 left += 1
+                right += 1
+            
+            else:
+                if not left:
+                    right += 1
+                
+                else:
+                    left = lps[left - 1]
+        
+        
+        needle_indx = 0
+        haystack_indx = 0
+        
+        while haystack_indx < len(haystack):
+            if haystack[haystack_indx] == needle[needle_indx]:
+                needle_indx += 1
+                haystack_indx += 1
+            
+            elif not needle_indx:
+                haystack_indx += 1
+            
+            else:
+                needle_indx = lps[needle_indx - 1]
+                
+            if needle_indx == needle_length:
+                return haystack_indx - needle_length
+                
         
         return -1
-                
+        
                 
             
             
