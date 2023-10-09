@@ -4,7 +4,7 @@ class Solution:
         length = len(s)
         power_dp = [1]
         for num in range(k):
-            power_dp.append(power_dp[-1]*power)
+            power_dp.append((power_dp[-1]*power)%modulo)
         
         
         right = length - 1
