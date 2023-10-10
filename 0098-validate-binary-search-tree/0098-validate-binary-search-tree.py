@@ -7,25 +7,25 @@
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         
-        prev = float('-inf')
-        
-        def inorder(node):
-            nonlocal prev
+        self.ans = True
+        def dfs(node):
+            if not self.ans:
+                return 0, 0
+                
             
-            if node:
-                left = inorder(node.left)
-                
-                if node.val > prev:
-                    prev = node.val
-                
-                else:
-                    return False
-                
-                right = inorder(node.right)
-                
-                return left and right
+            if not node:
+                return float('inf'), float('-inf')
             
-            return True
+            left_min, left_max = dfs(node.left)
+            right_min, right_max = dfs(node.right)
+            
+            if not left_max <  node.val < right_min:
+                self.ans = False
+                return 0, 0
+            
+            return min(left_min, node.val), max(node.val, right_max)
         
         
-        return inorder(root)
+        dfs(root)
+        return self.ans
+        
