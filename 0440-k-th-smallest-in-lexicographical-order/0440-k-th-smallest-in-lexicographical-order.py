@@ -3,12 +3,12 @@ class Solution:
         
         def count(num):
             tot = 0
-            dif = 1
+            delta = 1
             
             while num <= n:
-                tot += min(n - (num - 1), dif)
+                tot += min(n - (num - 1), delta)
                 num *= 10
-                dif *= 10
+                delta *= 10
             
             return tot
         
