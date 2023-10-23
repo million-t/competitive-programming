@@ -7,5 +7,4 @@ class Solution:
             return False
         
         return self.isPowerOfFour(n/4)
-            
         
