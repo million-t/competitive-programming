@@ -12,7 +12,7 @@ class Solution:
             for left in range(right + 1):
                 num2 = arr[left]
                 quot = num1/num2
-                dp[num1] += dp[quot]*dp[num2]
+                dp[num1] += (dp[quot]*dp[num2])%mod
                 dp[num1] %= mod
 
         return sum(dp.values())%mod
