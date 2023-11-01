@@ -17,7 +17,6 @@ class Solution:
                 find_mode(node.right)
         
         find_mode(root)
-        
         res = []
         
         for key, val in count.items():
