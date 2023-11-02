@@ -7,7 +7,6 @@
 class Solution:
     def averageOfSubtree(self, root: Optional[TreeNode]) -> int:
         
-        
         res = 0
         def findSumAndCount(node):
             nonlocal res
