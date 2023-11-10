@@ -2,33 +2,30 @@ class Solution:
     def restoreArray(self, adjacentPairs: List[List[int]]) -> List[int]:
         
         graph = defaultdict(list)
-        
+        indegree = defaultdict(int)
         
         for a, b in adjacentPairs:
             graph[a].append(b)
             graph[b].append(a)
+            indegree[a] += 1
+            indegree[b] += 1
         
-        
-        start = None
         for node in graph:
-            if len(graph[node]) == 1:
-                start = node
-                break
-        
-        arr = []
-        color = set()
-        
-        def topoSort(cur):
+            if indegree[node] == 1:
+                
+                order = []
+                queue = deque([node])
+                visited = set([node])
+                
+                while queue:
+                    cur = queue.popleft()
+                    order.append(cur)
+                    
+                    for neigh in graph[cur]:
+                        if neigh not in visited:
+                            queue.append(neigh)
+                            visited.add(neigh)
+
+                return order
             
-            if cur in color:
-                return
-            
-            arr.append(cur)   
-            color.add(cur)
-            
-            for neigh in graph[cur]:
-                topoSort(neigh)
         
-        topoSort(start)
-        
-        return arr
