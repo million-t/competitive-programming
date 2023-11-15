@@ -6,20 +6,15 @@ class Solution:
         for indx in range(1, len(stones)):
             pref.append(pref[-1] + stones[indx])
         
+        alice = [0]*len(pref)
+        bob = [0]*len(pref)
+        alice[-1] = pref[-1]
+        bob[-1] = -pref[-1]
         
-        @cache    
-        def dp(indx, person):
-            
-            if indx == len(pref) - 1:
-                return pref[indx] if person == 'a' else -pref[indx]
-            
-            if person == 'a':
-                ans = max(dp(indx + 1, 'a'), pref[indx] + dp(indx + 1, 'b'))
-                return ans
-            
-            ans = min(dp(indx + 1, 'b'), dp(indx + 1, 'a') - pref[indx])
-            return ans
-            
+        for indx in range(len(pref) - 2, 0, -1):
+            alice[indx] = max(alice[indx + 1], bob[indx + 1] + pref[indx])
+            bob[indx] = min(bob[indx + 1], alice[indx + 1] - pref[indx])
         
-        return dp(1, 'a')
+        
+        return alice[1]
             
