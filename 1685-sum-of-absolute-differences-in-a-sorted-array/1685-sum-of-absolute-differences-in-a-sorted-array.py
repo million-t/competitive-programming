@@ -1,5 +1,7 @@
 class Solution:
     def getSumAbsoluteDifferences(self, nums: List[int]) -> List[int]:
+        
+        
         total_sum = sum(nums)
         nums_size = len(nums)
         prefix_sums = []
@@ -13,6 +15,5 @@ class Solution:
         for indx, val in enumerate(nums):
             output[indx] = val*(indx) - prefix_sums[indx] + (total_sum - val - prefix_sums[indx]) - val*(nums_size - indx - 1)
         
-        return output            
-        
+        return output 
         
