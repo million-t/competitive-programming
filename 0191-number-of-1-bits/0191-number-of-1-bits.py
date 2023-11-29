@@ -7,5 +7,3 @@ class Solution:
             and_op_count += 1
         
         return and_op_count
-        
-        
