@@ -1,5 +1,6 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
+        
         length = len(nums)
         
         power_set = []
@@ -7,7 +8,7 @@ class Solution:
         def backtrack(_set, index):
             nonlocal length
             
-            power_set.append(_set[:])
+            power_set.insert(len(power_set), _set[:])
             
             if index >= length:
                 return
@@ -15,7 +16,7 @@ class Solution:
             
             for next_start in range(index, length):
                 
-                _set.append(nums[next_start])
+                _set.insert(len(_set), nums[next_start])
                 
                 backtrack(_set, next_start + 1)
                 
