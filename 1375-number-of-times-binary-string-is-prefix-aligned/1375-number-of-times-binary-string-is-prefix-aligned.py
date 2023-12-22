@@ -10,7 +10,7 @@ class Solution:
             max_ = max(num, max_)
             count += 1
             
-            if indx + 1 == count == max_:
+            if count == max_:
                 ans += 1
         
         return ans
