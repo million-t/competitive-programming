@@ -3,16 +3,14 @@ class Solution:
         set_arr = [set(string) for string in arr]
         
         
-        length = len(arr)
-        max_length = 0
+        self.length = len(arr)
+        self.max_length = 0
         
         def backtrack(_set, index, cur_len):
-            nonlocal max_length, length
-                
-            max_length = max(max_length, cur_len)
+            self.max_length = max(self.max_length, cur_len)
             
             
-            for i in range(index, length):
+            for i in range(index, self.length):
                 
                 new_elements = set_arr[i]
                 new_len = len(new_elements)
@@ -25,4 +23,4 @@ class Solution:
                     
         backtrack(set(), 0, 0)
         
-        return max_length
+        return self.max_length
