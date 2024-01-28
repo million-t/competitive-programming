@@ -1,30 +1,34 @@
 class Solution:
     def splitArray(self, nums: List[int], k: int) -> int:
         
-        pref = [nums[0]]
-        pref_sum = [nums[0]]
-        for indx in range(1, len(nums)):
-            pref.append(max(pref[-1], nums[indx]))
-            pref_sum.append(pref_sum[-1] + nums[indx])
+        def check(target):
+            cur_sum = 0
+            count = 1
+            
+            for num in nums:
+                cur_sum += num
+                
+                if cur_sum > target:
+                    count += 1
+                    cur_sum = num
+            
+            return count
         
-        @cache
-        def dp(start, k):
-            if start < 0:
-                return 0
-            
-            if k == 1:
-                return pref_sum[start]
-            
-            if k == start + 1:
-                return pref[start]
-            
-            ans = float("inf")
-            run_sum = 0
-            for indx in range(start, k - 2, -1):
-                run_sum += nums[indx]
-                ans = min(ans, max(run_sum, dp(indx - 1, k - 1)))
-            
-            return ans
-            
         
-        return dp(len(nums) - 1, k)
+        
+        start = max(nums)
+        end = sum(nums)
+        
+        while start <= end:
+            mid = start + (end - start)//2
+            
+            count = check(mid)
+            if count <= k:
+                end = mid - 1
+            
+            else:
+                start = mid + 1
+                
+        
+        
+        return start
