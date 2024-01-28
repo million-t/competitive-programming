@@ -27,6 +27,6 @@ class Solution:
                     dp[(prev, col)][pref[row][col] - pref[row][prev]] += 1
                 
                 
-        return ans        
+        return ans       
         
         
