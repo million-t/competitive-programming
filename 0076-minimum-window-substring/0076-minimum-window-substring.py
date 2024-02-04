@@ -1,11 +1,12 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        count_t = Counter(t)
         
+        count_t = Counter(t)
         win_count = Counter()
-        min_len = (0, float('inf'))
         
         left = 0
+        min_len = left, float('inf')
+        
         for right in range(len(s)):
             win_count[s[right]] += 1
             
@@ -23,4 +24,4 @@ class Solution:
         
         return s[min_len[0]: min_len[1] + 1]
                 
-            
+        
