@@ -1,5 +1,7 @@
 class Solution:
     def firstUniqChar(self, s: str) -> int:
+        
+        
         count = defaultdict(list)
         
         for i, char in enumerate(s):
