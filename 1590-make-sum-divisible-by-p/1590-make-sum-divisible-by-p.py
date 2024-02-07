@@ -1,36 +1,27 @@
 class Solution:
     def minSubarray(self, nums: List[int], p: int) -> int:
+        target = sum(nums)%p
         
-        length = len(nums)
-        suff = [0]*(length + 1)
+        if not target:
+            return 0
         
-        for indx in range(length - 1, -1, -1):
-            suff[indx] = (suff[indx + 1] + nums[indx])%p
-        
-        
-        last_pos = defaultdict(lambda: float('-inf'))
+        seen = defaultdict(int)
+        seen[0] = -1
+        run_sum = 0
         ans = float('inf')
-        run_mod = 0
-        
         
         for indx, num in enumerate(nums):
-            left = last_pos[p - suff[indx]]
-            run_mod = (run_mod + num)%p
-                
-            ans = min(ans, indx - left - 1)
-            last_pos[run_mod] = indx
+            run_sum += num
+            run_sum %= p
+            dif = (run_sum - target)%p
+            
+            if dif in seen and indx - seen[dif] < len(nums):
+                ans = min(ans, indx - seen[dif])
+            
+            seen[run_sum] = indx
         
-            if not run_mod:
-                ans = min(ans, length - indx - 1)
-                
-            if not suff[indx]:
-                ans = min(ans, indx)
-        
-        
-        if ans == float("inf"):
-            return -1
-        
-        return ans
+        return ans if ans != float('inf') else -1
+            
             
             
             
