@@ -2,10 +2,8 @@ class Solution:
     def frequencySort(self, s: str) -> str:
         
         count = Counter(s)
-        heap = []
-        
-        for char, freq in count.items():
-            heappush(heap, (freq, char))
+        heap = [ (freq, char) for char, freq in count.items()]
+        heapify(heap)
         
         res = []
         
