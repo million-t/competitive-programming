@@ -2,7 +2,6 @@ class Solution:
     def bestClosingTime(self, customers: str) -> int:
         
         
-        size = len(customers)
         sufy = customers.count('Y')
         prefn = 0
         penalty = sufy
