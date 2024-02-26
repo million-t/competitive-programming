@@ -7,21 +7,18 @@
 class Solution:
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
         
-        def dc(arr):
+        def dc(left, right):
             
-            if len(arr) == 0:
+            if left > right:
                 return None
             
-            if len(arr) == 1:
-                return TreeNode(arr[0])
-            
-            mid = len(arr)//2
-            cur = TreeNode(arr[mid])
-            left = dc(arr[:mid])
-            right = dc(arr[mid + 1:])
+            mid = left + (right - left)//2
+            cur = TreeNode(nums[mid])
+            left = dc(left, mid - 1)
+            right = dc(mid + 1, right)
             
             cur.left = left
             cur.right = right
             return cur
         
-        return dc(nums)
+        return dc(0, len(nums) - 1)
