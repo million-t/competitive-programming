@@ -1,24 +1,20 @@
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
         
-        combinations = []
         
-        def backtrack(comb=[], index=1, count=0):
-            nonlocal k, n
+        ans = []
+        
+        def backtrack(cur, comb):
             
-            if count == k:
-                combinations.append(comb[:])
-                return
+            if len(comb) == k:
+                ans.append(comb[:])
+                return 
             
-            for num in range(index, n + 1):
-
-                comb.append(num)
-
-                backtrack(comb, num + 1, count + 1)
-
+            for next_num in range(cur, n + 1):
+                comb.append(next_num)
+                backtrack(next_num + 1, comb)
                 comb.pop()
         
-        backtrack()
-        
-        return combinations
+        backtrack(1, [])
+        return ans
             
