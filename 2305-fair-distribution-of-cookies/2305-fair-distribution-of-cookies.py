@@ -1,6 +1,9 @@
 class Solution:
     def distributeCookies(self, cookies: List[int], k: int) -> int:
         
+        if len(cookies) == k:
+            return max(cookies)
+        
         ans = float('inf')
         
         def backtrack(indx, dist, max_so_far):
