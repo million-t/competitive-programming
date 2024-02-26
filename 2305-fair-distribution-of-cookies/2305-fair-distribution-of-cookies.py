@@ -1,28 +1,23 @@
 class Solution:
     def distributeCookies(self, cookies: List[int], k: int) -> int:
         
-        min_dist = float('inf')
-        distribution = [0]*k
+        ans = float('inf')
         
-        def backtrack(index):
-            nonlocal min_dist
+        def backtrack(indx, dist, max_so_far):
+            nonlocal ans
             
-            if index >= len(cookies):
-                min_dist = min(min_dist, max(distribution))
+            if indx >= len(cookies):
+                ans = min(ans, max_so_far)
                 return
             
-            for i in range(k):
-                distribution[i] += cookies[index]
-                
-                if distribution[i] >= min_dist:
-                    distribution[i] -= cookies[index]
-                    continue
-                
-                backtrack(index + 1)
-                
-                distribution[i] -= cookies[index]
+            if max_so_far >= ans:
+                return
             
+            for person in range(k):
+                dist[person] += cookies[indx]
+                backtrack(indx + 1, dist, max(max_so_far, dist[person]))
+                dist[person] -= cookies[indx]
         
-        backtrack(0)
+        backtrack(0, [0]*k, 0)
         
-        return min_dist
+        return ans
