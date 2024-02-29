@@ -2,14 +2,13 @@ class Solution:
     def predictTheWinner(self, nums: List[int]) -> bool:
         
         @cache
-        def recur(left, right):
+        def play(left, right):
             if left > right:
                 return 0
             
-            
-            front = min(recur(left + 2, right), recur(left + 1, right - 1)) + nums[left]
-            rear = min(recur(left + 1, right - 1), recur(left, right - 2)) + nums[right]
+            front = nums[left] + min(play(left + 2, right), play(left + 1, right - 1))
+            rear = nums[right] + min(play(left + 1, right - 1), play(left, right - 2))
             return max(front, rear)
         
-        return recur(0, len(nums) - 1)*2 >= sum(nums)
+        return play(0, len(nums) - 1)*2 >= sum(nums)
         
