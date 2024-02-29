@@ -7,13 +7,13 @@ class Solution:
         
         for indx in range(len(nums) - 1, -1, -1):
             num = nums[indx]
+            
             if num < two:
                 return True
             
-            while stack and stack[-1] < num:
-                two = max(stack.pop(), two)
+            while stack and num > stack[-1]:
+                two = max(two, stack.pop())
             
             stack.append(num)
-            
-        return False
         
+        return False
