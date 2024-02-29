@@ -1,26 +1,15 @@
 class Solution:
-    def PredictTheWinner(self, nums: List[int]) -> bool:
+    def predictTheWinner(self, nums: List[int]) -> bool:
         
-        @cache
-        def maximize(left, right):
+        
+        def recur(left, right):
             if left > right:
                 return 0
             
-            if left == right:
-                return nums[left]
             
-            go_with_left = nums[left] + min(maximize(left + 1, right - 1), maximize(left + 2, right))
-            go_with_right = nums[right] + min(maximize(left, right - 2), maximize(left + 1, right - 1))
-            
-            return max(go_with_left, go_with_right)
+            front = min(recur(left + 2, right), recur(left + 1, right - 1)) + nums[left]
+            rear = min(recur(left + 1, right - 1), recur(left, right - 2)) + nums[right]
+            return max(front, rear)
         
-        
-        left = 0
-        right = len(nums) - 1
-        
-        total_score = sum(nums)
-        player1_score = maximize(left, right)
-        
-        return player1_score >= total_score/2
-        
+        return recur(0, len(nums) - 1)*2 >= sum(nums)
         
