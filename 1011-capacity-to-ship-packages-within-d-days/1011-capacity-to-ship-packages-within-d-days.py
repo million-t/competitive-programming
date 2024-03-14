@@ -1,37 +1,34 @@
 class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
+        nums = weights
+        k = days
         
-        def findDays(n):
+        def check(target):
+            cur_sum = 0
+            count = 1
             
-            sum_so_far = weights[0]
-            days_count = 1
-            
-            for i in range(1, len(weights)):
-                if sum_so_far + weights[i] > n:
-                    sum_so_far = 0
-                    days_count += 1
+            for num in nums:
+                cur_sum += num
                 
-                sum_so_far += weights[i]
-
-            return days_count
+                if cur_sum > target:
+                    count += 1
+                    cur_sum = num
+            
+            return count
         
         
-        
-        start = max(weights)
-        end = sum(weights)
-        
+        start = max(nums)
+        end = sum(nums)
         
         while start <= end:
             mid = start + (end - start)//2
             
-            temp = findDays(mid)
-            if temp <= days:
-                end = mid - 1   
+            count = check(mid)
+            if count <= k:
+                end = mid - 1
             
             else:
                 start = mid + 1
-        
-        return start
-            
                 
         
+        return start
